@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "podcast_episodes",
+  "info": {
+    "singularName": "podcast-episode",
+    "pluralName": "podcast-episodes",
+    "displayName": "Podcast Episode",
+    "description": "Episodi audio distribuiti sui feed Capibara"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "summary": {
+      "type": "text"
+    },
+    "show": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::show.show",
+      "inversedBy": "podcast_episodes"
+    },
+    "publishDate": {
+      "type": "datetime"
+    },
+    "durationSeconds": {
+      "type": "integer"
+    },
+    "audioFile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["audio"]
+    },
+    "appleLink": {
+      "type": "string"
+    },
+    "spotifyLink": {
+      "type": "string"
+    },
+    "youtubeLink": {
+      "type": "string"
+    },
+    "isPremium": {
+      "type": "boolean",
+      "default": false
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "podcasts"
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner.partner",
+      "inversedBy": "podcast_mentions"
+    }
+  }
+}
+

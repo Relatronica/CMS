@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "video_episodes",
+  "info": {
+    "singularName": "video-episode",
+    "pluralName": "video-episodes",
+    "displayName": "Video Episode",
+    "description": "Episodi video di Capibara Originals"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "synopsis": {
+      "type": "text"
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "videoUrl": {
+      "type": "string",
+      "required": true
+    },
+    "durationSeconds": {
+      "type": "integer"
+    },
+    "publishDate": {
+      "type": "datetime"
+    },
+    "isPremium": {
+      "type": "boolean",
+      "default": false
+    },
+    "show": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::show.show",
+      "inversedBy": "video_episodes"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "videos"
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner.partner",
+      "inversedBy": "video_placements"
+    }
+  }
+}
+

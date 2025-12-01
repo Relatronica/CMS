@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shows",
+  "info": {
+    "singularName": "show",
+    "pluralName": "shows",
+    "displayName": "Show",
+    "description": "Hub per i brand video/podcast/newsletter di Capibara"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "kind": {
+      "type": "enumeration",
+      "enum": ["video", "podcast", "newsletter"],
+      "default": "video",
+      "required": true
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "accentColor": {
+      "type": "string"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "video_episodes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::video-episode.video-episode",
+      "mappedBy": "show"
+    },
+    "podcast_episodes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::podcast-episode.podcast-episode",
+      "mappedBy": "show"
+    },
+    "newsletter_issues": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::newsletter-issue.newsletter-issue",
+      "mappedBy": "show"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "shows"
+    }
+  }
+}
+
