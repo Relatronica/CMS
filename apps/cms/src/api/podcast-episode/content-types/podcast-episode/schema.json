@@ -46,7 +46,7 @@
     "audioFile": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": ["audio"]
+      "allowedTypes": ["audios"]
     },
     "appleLink": {
       "type": "string"
